@@ -49,7 +49,6 @@ add_executable(Osciloscop_Pico
     GLOBALS.c
     DataMonitor.c
     ButtonManager.c
-    Driver_SSD1306.c
     )
 
 pico_set_program_name(Osciloscop_Pico "Osciloscop_Pico")
@@ -69,7 +68,11 @@ target_link_libraries(Osciloscop_Pico
 # Add the standard include files to the build
 target_include_directories(Osciloscop_Pico PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/inc
 )
+
+# Add drivers
+add_subdirectory(drivers)
 
 # Add any user requested libraries
 target_link_libraries(Osciloscop_Pico 
@@ -80,6 +83,7 @@ target_link_libraries(Osciloscop_Pico
         hardware_timer
         hardware_clocks
         hardware_adc
+        hardware_drivers
         )
 
 pico_add_extra_outputs(Osciloscop_Pico)
